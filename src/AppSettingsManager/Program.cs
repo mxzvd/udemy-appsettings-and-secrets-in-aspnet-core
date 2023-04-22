@@ -3,6 +3,20 @@ using AppSettingsManager.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
+
+// Define a custom hierarchy of configuration settings
+builder.Configuration.Sources.Clear();
+builder.Configuration.AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
+builder.Configuration.AddJsonFile($"appsettings.{builder.Environment.EnvironmentName}.json", optional: true, reloadOnChange: true);
+builder.Configuration.AddJsonFile("custom.json", optional: true, reloadOnChange: true);
+if (builder.Environment.IsDevelopment())
+{
+	builder.Configuration.AddUserSecrets<Program>();
+}
+builder.Configuration.AddEnvironmentVariables();
+builder.Configuration.AddCommandLine(args);
+
+
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 

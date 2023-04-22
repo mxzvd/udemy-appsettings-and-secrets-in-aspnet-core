@@ -7,6 +7,8 @@
       "applicationUrl": "https://localhost:7016;http://localhost:5165",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
+				// "SendGridKey": "SendGridKey from environment variables",
+				// "Twilio:PhoneNumber": "+1111 PhoneNumber from environment variables"
       }
     }
   }
