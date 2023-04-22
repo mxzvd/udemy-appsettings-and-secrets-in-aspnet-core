@@ -1,7 +1,14 @@
+using AppSettingsManager;
+using AppSettingsManager.Models;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddConfiguration<TwilioOptions>(builder.Configuration, "Twilio");
+builder.Services.Configure<SocialLoginOptions>(builder.Configuration.GetSection("SocialLoginSettings"));
+builder.Services.Configure<TwilioOptions>(builder.Configuration.GetSection("Twilio"));
 
 var app = builder.Build();
 
